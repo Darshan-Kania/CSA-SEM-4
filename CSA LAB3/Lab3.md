@@ -92,7 +92,9 @@
    MVI M,02H;
    HLT;
    ```
+
 ---
+
 2. Write an Assembly Language Program to load the Hexadecimal Numbers 9BH and A7H in Registers D and
    E respectively, and add the numbers. If the Sum is greater than FFH, then display 01H at the memory
    location 1000H, otherwise display the sum.
@@ -111,5 +113,68 @@
    STA 1001H;
    HLT;
    ```
+
 ---
-3.
+
+3. Write an Assembly language program in 8085 to Count number of 1's of the content of the register D and
+   store the count in the register C.
+    - INPUT: DAH
+    - OUTPUT: 5
+
+- ```assembly
+  MVI A,5CH;
+  MOV B,A;
+  CHECK:
+  	RRC ;
+  	JC INCREMENT
+  	CONTINUE:
+  	CMP B;
+  	JZ END;
+  	JMP CHECK;
+  INCREMENT:
+  	INR L;
+  	JMP CONTINUE;
+  END:
+  MOV C,L;
+  HLT;
+  ```
+
+---
+
+4. Write an Assembly language program in 8085 to Move a block of 8 byte data stored from DF10H - DF17H
+   to DF70H - DF77H.
+
+- 8 Byte Block: 11,22,33,44,55,66,77,88
+- ```assembly
+    LXI H,DF10H       
+    MVI C,08H         
+    INIT: 
+          MOV A,C 
+          MOV M,A 
+          INX H 
+          DCR C 
+          JNZ INIT  
+          LXI H, DF10H
+          LXI D, DF70H
+          MVI C, 08H  
+    MOVE: 
+          MOV A,M 
+          STAX D 
+          INX H 
+          INX D 
+          DCR C 
+          JNZ MOVE 
+    HLT
+   ```
+---
+
+5. Write an Assembly program in 8085 to multiply a given number by 2 using Rotate instructions.
+
+- Left Shift Always means multiplying by 2
+- ```
+   MVI A,5CH;
+   RAL;
+   HLT;
+   ```
+---
+> END OF DOCUMENT
