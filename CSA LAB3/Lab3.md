@@ -150,7 +150,7 @@
     MVI C,08H         
     INIT: 
           MOV A,C 
-          MOV M,A 
+          MOV M,A   
           INX H 
           DCR C 
           JNZ INIT  
