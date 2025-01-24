@@ -1,0 +1,24 @@
+
+START:	   MVI D,10	// Counter
+
+W:	   LXI H,2201
+	   MVI C,10	// Counter
+
+X:	   MOV A,M
+	   INX H
+	   MOV B,M
+	   CMP B
+	   JM Y
+	   MOV M,A
+	   DCX H
+	   MOV M,B
+	   INX H
+
+Y:	   DCR C
+	   JNZ X
+	   DCR D
+	   JNZ W
+	   HLT
+
+# ORG 2201
+# DB 63,41,56,62,48,5A,4F,4C,56,56
